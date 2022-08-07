@@ -32,6 +32,7 @@ class App extends React.Component {
           <Route path="/login" exact component={Login}/>
           <Route path="/sobreNosotros" exact component={SobreNosotros}/>
           <Route path="/contactenos" exact component={Contactenos}/>
+
           <Route path="/productos" exact component={Productos}/>
           <Route path="/productos/salas" exact component={Salas}/>
           <Route path="/productos/comedores" exact component={Comedores}/>
@@ -41,12 +42,10 @@ class App extends React.Component {
           <Route path="/productos/escritorios" exact component={Escritorios}/>
           <Route path="/productos/cunas" exact component={Cunas}/>
           <Route path="/productos/masMuebles" exact component={Mas_muebles}/>
+          
           <Route path="/registro" exact component={Registro}/>
           <Route path="/perfil" exact component={Perfil} />
- ramaProductos
-
           <Route path="/perfil/editar/:userId" exact component={Editar} />
- main
         </Switch>
       </Router>
     );
