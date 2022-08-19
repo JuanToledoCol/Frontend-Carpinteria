@@ -1,8 +1,24 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/perfil_sin_fondo2.png";
 
-function Navbar(props) {
+export default function CardsCategoria() {
+    const [categoria, setCategoria] = useState(null);
+    
+    useEffect(() => {
+        const getCategorias = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/categoria");
+            setCategoria(response.data.body);
+        } catch (error) {
+            console.error(error);
+        }
+        };
+        getCategorias();
+    }, []);
+    
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-warning p-0 fixed-top">
             <div className="container-fluid">
@@ -29,14 +45,16 @@ function Navbar(props) {
                                 <span className="visually-hidden"></span>
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><Link className="dropdown-item" to="/productos/salas">Salas</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/comedores">Comedores</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/cosinas">Cocinas</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/baños">Baños</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/armarios">Armarios y gavetas</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/escritorios">Escritorios</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/cunas">Cunas</Link></li>
-                                <li><Link className="dropdown-item" to="/productos/masMuebles">otros</Link></li>
+                                {
+                                    categoria && categoria.map((categoria) => (
+                                        <li key={categoria.idCategoria}>
+                                            <Link className="dropdown-item" to={categoria.urlPagina}>
+                                                {categoria.nombreCategoria}
+                                            </Link>
+                                        </li>
+                                    ))
+                                }
+                                
                             </ul>
 
                         </li>
@@ -72,5 +90,3 @@ function Navbar(props) {
         </nav>
     )
 }
-
-export default Navbar;

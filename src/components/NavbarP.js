@@ -1,43 +1,43 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function NavbarP(props){
-    return(
-    <nav >
-        <div className="container-fluid w-100 mb-4 bg-secondary" style={{ margin: '100px 0 180px 0' }}>
-                    <h1 className="text-center text-dark ">Bienvenido al catalogo de nuestros productos</h1><br />
-                    <div className="card text-center bg-secondary ">
-                        <div className="card-header ">
-                            <ul className="nav nav-tabs card-header-tabs ">
-                                <li className="nav-item ">
-                                    <Link className="nav-link text-warning  " aria-current="true" to="/productos/salas">Salas</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/comedores">Comedores</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/cosinas">Cocinas</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/armarios">Armarios y Gavetas</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/escritorios">Escritorios</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/cunas">Cunas</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/baños">Baños</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link text-warning " to="/productos/masMuebles">Otros</Link>
-                                </li>
-                            </ul>
-                        </div>
+
+export default function CardsCategoria() {
+    const [categoria, setCategoria] = useState(null);
+
+    useEffect(() => {
+        const getCategorias = async () => {
+            try {
+                const response = await axios.get("http://localhost:5000/categoria");
+                setCategoria(response.data.body);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getCategorias();
+    }, []);
+
+    return (
+        <nav >
+            <div className="container-fluid w-100 mb-4 bg-secondary pt-1" style={{ margin: '70px 0 0 0' }}>
+                <h1 className="text-center text-dark ">Bienvenido al catalogo de nuestros productos</h1><br />
+                <div className="card text-center bg-secondary ">
+                    <div className="card-header ">
+                        <ul className="nav nav-tabs card-header-tabs ">
+                            {
+                                categoria && categoria.map((categoria) => (
+                                    <li className="nav-item " key={categoria.idCategoria}>
+                                        <Link className="nav-link text-warning text-uppercase" aria-current="true" to={categoria.urlPagina}>
+                                            {categoria.nombreCategoria}
+                                        </Link>
+                                    </li>
+                                ))
+                            }
+                        </ul>
                     </div>
-        </div>
-    </nav>
+                </div>
+            </div>
+        </nav>
     )
 }
-export default NavbarP;
