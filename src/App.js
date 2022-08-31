@@ -1,6 +1,5 @@
 import React from "react";
-import './App.css';
-import {BrowserRouter as Router,Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Index from "./pages/Index";
 import Login from "./pages/Login";
@@ -17,7 +16,7 @@ import Baños from "./pages/productos/Baños";
 import Armarios from "./pages/productos/Armarios";
 import Escritorios from "./pages/productos/Escritorios";
 import Cunas from "./pages/productos/Cunas";
-import muebles from "./pages/productos/Muebles";
+import Muebles from "./pages/productos/Muebles";
 
 import Editar from "./pages/Editar";
 
@@ -25,26 +24,26 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Switch>
-          <Route path="/" exact component={Index}/>
-          <Route path="/login" exact component={Login}/>
-          <Route path="/sobreNosotros" exact component={SobreNosotros}/>
-          <Route path="/contactenos" exact component={Contactenos}/>
+        <Routes>
+          <Route path="/" exact element={<Index />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/sobreNosotros" exact element={<SobreNosotros />} />
+          <Route path="/contactenos" exact element={<Contactenos />} />
 
-          <Route path="/productos" exact component={Productos}/>
-          <Route path="/salas" exact component={Salas}/>
-          <Route path="/comedores" exact component={Comedores}/>
-          <Route path="/cocinas" exact component={Cocinas}/>
-          <Route path="/baños" exact component={Baños}/>
-          <Route path="/armarios" exact component={Armarios}/>
-          <Route path="/escritorios" exact component={Escritorios}/>
-          <Route path="/cunas" exact component={Cunas}/>
-          <Route path="/muebles" exact component={muebles}/>
-          
-          <Route path="/registro" exact component={Registro}/>
-          <Route path="/perfil" exact component={Perfil} />
-          <Route path="/perfil/editar/:userId" exact component={Editar} />
-        </Switch>
+          <Route path="/productos" exact element={<Productos />} />
+          <Route path="/salas" exact element={<Salas />} />
+          <Route path="/comedores" exact element={<Comedores />} />
+          <Route path="/cocinas" exact element={<Cocinas />} />
+          <Route path="/baños" exact element={<Baños />} />
+          <Route path="/armarios" exact element={<Armarios />} />
+          <Route path="/escritorios" exact element={<Escritorios />} />
+          <Route path="/cunas" exact element={<Cunas />} />
+          <Route path="/muebles" exact element={<Muebles />} />
+
+          <Route path="/registro" exact element={<Registro />} />
+          <Route path="/perfil" exact element={<Perfil />} />
+          <Route path="/perfil/editar/:userId" exact element={Editar} />
+        </Routes>
       </Router>
     );
   }
