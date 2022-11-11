@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios";
+import ValidateSignUp from "../components/ValidateSignUp";
 
 export default function Registro() {
+
+    const navigate = useNavigate();
 
     const [usuarioN, setUsuarioN] = useState({
         nombreUsuario: "",
@@ -61,7 +64,8 @@ export default function Registro() {
 
         if (response.data.ok === true) {
             <div class="alert alert-success" role="alert">
-                response.data.mensaje
+                {<ValidateSignUp mensaje={response.data.message} />}
+                {navigate("/Login")}
             </div>
         } else {
             <div class="alert alert-danger" role="alert">

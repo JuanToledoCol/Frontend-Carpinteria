@@ -8,15 +8,14 @@ export default function CardsProduco(props) {
     useEffect(() => {
         const getProducto = async () => {
             try {
-                const response = await axios.get(
-                    `http://localhost:5000/productoc/${props.nombreCategoria}`);
+                const response = await axios.get(`http://localhost:5000/productoc/${props.nombreCategoria}`);
                 setProducto(response.data.body);
             } catch (error) {
                 console.error(error);
             }
         };
         getProducto();
-    }, [props.nombreCategoria]);
+    }, []);
 
     return (
         <div className='container'>

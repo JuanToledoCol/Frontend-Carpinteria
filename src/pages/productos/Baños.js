@@ -13,7 +13,7 @@ class Baños extends React.Component {
                 <div>
                     <div className="card-body bg-secondary" style={{ marginTop: "-24px" }}>
                         <h2 className="text-center">Personalizacion para tu baño</h2>
-                        <CardsProducto nombreCategoria={"baños"} />
+                        <CardsProducto nombreCategoria={"banos"} />
                     </div>
                 </div>
                 <Footer />
