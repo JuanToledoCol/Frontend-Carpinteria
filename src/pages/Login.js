@@ -113,7 +113,6 @@ export default function Login() {
                     <div className=" d-flex justify-content-center align-content-center" style={{ margin: '150px 0 180px 0' }}>
                         <div className="w-75 bg-secondary p-4 rounded-3">
                             <section >
-
                                 <p ref={errRef} className={errMsg ? "errmsd" : "offscreen"} aria-live="assertive">
                                     {errMsg}
                                 </p>
